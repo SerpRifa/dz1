@@ -4,10 +4,10 @@ import "./NewsPost.css";
 class NewsPost extends Component {
 
   render() {
-    const {message} = this.props;
-    console.log(message);
+    const {text} = this.props;
+    console.log(text);
     return <div className="news-post">
-      <p>{message}</p>
+      <p>{text}</p>
     </div>;    
     
   } 

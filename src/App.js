@@ -16,7 +16,7 @@ class App extends Component {
       </header>
       <input className="comment-input" onChange={this.handleChange} placeholder="Название новости" value="" />
       <a hr="#" className="button" onClick={this.handleNewPost}>Отправить</a>
-      {this.state.news.map(value => <NewsPost key= {value} message={value}/>)}
+      {this.state.news.map((value, i) => <NewsPost id= {i} text={value}/>)}
     </div>;    
     
   }
