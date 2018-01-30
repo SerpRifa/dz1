@@ -5,35 +5,35 @@ import "./App.css";
 
 class App extends Component {
   state = {
-    value:"",
+    newsInput:"",
     news:[]
   }
   render() {
-    const {value} = this.state;
+    const {newsInput} = this.state;
     return <div className="App">
       <header>
             
       </header>
-      <input className="comment-input" onChange={this.onHandleChange} placeholder="Название новости" value={value} />
-      <a hr="#" className="button" onClick={this.onAddNews}>Отправить</a>
+      <input className="comment-input" onChange={this.handleChange} placeholder="Название новости" value="" />
+      <a hr="#" className="button" onClick={this.handleNewPost}>Отправить</a>
       {this.state.news.map(value => <NewsPost key= {value} message={value}/>)}
     </div>;    
     
   }
 
-  onHandleChange = event=>{
-    this.setState({value: event.target.value});
+  handleChange = event=>{
+    this.setState({newsInput: event.target.value});
     console.log(this.state);
   }
 
-  onAddNews = ()=>{
-    if(!this.state.value)
+  handleNewPost = ()=>{
+    if(!this.state.newsInput)
       return;
       
     this.setState(prevState => ({
-      news: [...prevState.news, this.state.value]
+      news: [...prevState.news, this.state.newsInput]
     }))
-
+    this.setState({newsInput: ""});
     console.log(this.state.news);
   }
 }
