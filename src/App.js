@@ -14,9 +14,10 @@ class App extends Component {
       <header>
             
       </header>
-      <input className="comment-input" onChange={this.handleChange} placeholder="Название новости" value="" />
-      <a hr="#" className="button" onClick={this.handleNewPost}>Отправить</a>
-      {this.state.news.map((value, i) => <NewsPost id= {i} text={value}/>)}
+      <input className="comment-input" onChange={this.handleChange} placeholder="Название новости" value={newsInput} />
+      {/* <a hr="#" className="button" onClick={this.handleNewPost}>Отправить</a> */}
+      <button onClick={this.handleNewPost}>Отправить</button>
+      {this.state.news.map((value, i) => <NewsPost id={value} key={value} text={value}/>)}
     </div>;    
     
   }
@@ -31,7 +32,7 @@ class App extends Component {
       return;
       
     this.setState(prevState => ({
-      news: [...prevState.news, this.state.newsInput]
+      news: [...prevState.news, {text: this.state.newsInput}]
     }))
     this.setState({newsInput: ""});
     console.log(this.state.news);
