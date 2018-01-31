@@ -48,6 +48,7 @@ describe('App component', () => {
       wrapper.find('input').simulate('change', {target: {value: 10}});
       wrapper.update();
       wrapper.find('button').simulate('click');
+      console.log(wrapper.state());      
       expect(wrapper.state().newsInput).toEqual('');
       expect(wrapper.state().news[0].text).toEqual(10);
     });

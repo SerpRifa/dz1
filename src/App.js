@@ -10,32 +10,29 @@ class App extends Component {
   }
   render() {
     const {newsInput} = this.state;
+    const {news} = this.state;
+
     return <div className="App">
-      <header>
-            
-      </header>
       <input className="comment-input" onChange={this.handleChange} placeholder="Название новости" value={newsInput} />
       {/* <a hr="#" className="button" onClick={this.handleNewPost}>Отправить</a> */}
       <button onClick={this.handleNewPost}>Отправить</button>
-      {this.state.news.map((value, i) => <NewsPost id={value} key={value} text={value}/>)}
+      {news.map((newsFromState, i) => <NewsPost  key={newsFromState.text} text={newsFromState.text}/>)}
     </div>;    
     
   }
 
   handleChange = event=>{
-    this.setState({newsInput: event.target.value});
-    console.log(this.state);
+    this.setState({newsInput: event.target.value});   
   }
 
   handleNewPost = ()=>{
-    if(!this.state.newsInput)
-      return;
-      
-    this.setState(prevState => ({
-      news: [...prevState.news, {text: this.state.newsInput}]
-    }))
-    this.setState({newsInput: ""});
-    console.log(this.state.news);
+    let news = this.state.news.slice();
+    const {newsInput} = this.state;
+
+    news.push({text: newsInput});    
+
+    this.setState({news: news, newsInput: ""});    
+
   }
 }
 export default App;
